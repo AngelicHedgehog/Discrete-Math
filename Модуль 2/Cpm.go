@@ -174,8 +174,8 @@ func main() {
 		fmt.Printf("\t%s [label = \"%s(%d)\"", idToWord[a], idToWord[a], vals[a])
 		if reds[a] {
 			fmt.Printf(", color = red]\n")
-		} else if blues[a] {
-			fmt.Printf(", color = blue]\n")
+			//		} else if blues[a] {
+			//			fmt.Printf(", color = blue]\n")
 		} else {
 			fmt.Printf("]\n")
 		}
@@ -186,8 +186,8 @@ func main() {
 				fmt.Printf("\t%s -> %s", idToWord[a], idToWord[b])
 				if reds[a] && reds[b] {
 					fmt.Println(" [color = red]")
-				} else if blues[a] && blues[b] {
-					fmt.Println(" [color = blue]")
+					//				} else if blues[a] && blues[b] {
+					//					fmt.Println(" [color = blue]")
 				} else {
 					fmt.Println()
 				}
