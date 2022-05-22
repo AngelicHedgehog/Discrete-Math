@@ -130,6 +130,9 @@ func main() {
 						fmt.Println("syntax error")
 						return
 					}
+				} else {
+					fmt.Println("syntax error")
+					return
 				}
 			}
 		}
