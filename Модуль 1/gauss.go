@@ -31,6 +31,7 @@ func main() {
 			fmt.Scan(&slau[i][j])
 		}
 	}
+
 	/*/
 	N := 5
 	slau := [5][6]int{{3, 0, 1, -2, 0, 0}, {-1, 2, -1, 1, -1, -3}, {2, 2, 0, -1, -1, -3}, {1, -1, -1, 0, -2, 1}, {0, 0, 0, 0, 0, 0}}
@@ -59,7 +60,6 @@ func main() {
 		x++
 		y++
 	}
-
 	for y = N - 1; y >= 0; y-- {
 		for x = 0; x < N && slau[y][x] == 0; x++ {
 		}
@@ -80,7 +80,7 @@ func main() {
 	}
 	for i, j = 0, 0; i < N; {
 		if slau[i][j] == 0 {
-			if j == N-1 {
+			if j >= N-1 {
 				fmt.Println("0/1")
 				i++
 			} else {
@@ -107,4 +107,5 @@ func main() {
 			fmt.Println()
 		}
 	*/
+
 }
