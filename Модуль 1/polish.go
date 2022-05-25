@@ -2,8 +2,14 @@ package main
 
 import "fmt"
 
-func eval(op rune, a, b int) int {
-	switch op {
+func evalPolish() int {
+	var op string
+	fmt.Scan(&op)
+	if '0' <= op[0] && op[0] <= '9' {
+		return int(op[0] - '0')
+	}
+	a, b := evalPolish(), evalPolish()
+	switch op[1] {
 	case '+':
 		return a + b
 	case '-':
@@ -14,10 +20,5 @@ func eval(op rune, a, b int) int {
 }
 
 func main() {
-	var (
-		op1, op2, op3 rune
-		a, b, c, d    int
-	)
-	fmt.Scanf("(%c %d (%c %d (%c %d %d)))", &op1, &a, &op2, &b, &op3, &c, &d)
-	fmt.Println(eval(op1, a, eval(op2, b, eval(op3, c, d))))
+	fmt.Println(evalPolish())
 }
