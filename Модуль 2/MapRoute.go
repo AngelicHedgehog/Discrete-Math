@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
 	var N, a, b, c, ind int
@@ -37,13 +35,17 @@ func main() {
 	inQueue := map[int]bool{Map[0]: true}
 	queue := map[int]map[int]bool{Map[0]: {0: true}}
 	for true {
-		if len(queue) == 0 {
+		if len(inQueue) == 0 {
 			break
 		}
 		a = -1
 		for b = 0; ; b++ {
 			if inQueue[b] {
 				for c = range queue[b] {
+					if c == sqrN-1 {
+						fmt.Println(ways[sqrN-1])
+						return
+					}
 					a = c
 					delete(queue[b], c)
 					if len(queue[b]) == 0 {
@@ -72,5 +74,4 @@ func main() {
 			}
 		}
 	}
-	fmt.Println(ways[sqrN-1])
 }
