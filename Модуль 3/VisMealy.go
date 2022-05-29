@@ -24,11 +24,7 @@ func main() {
 		alphas[j] = 'a' + j
 	}
 
-	fmt.Print("digraph {\n\trankdir = LR\n\tdummy [label = \"\", shape = none]")
-	for i = 0; i < n; i++ {
-		fmt.Printf("\n\t%d [shape = circle]", i)
-	}
-	fmt.Printf("\n\tdummy -> %d", q0)
+	fmt.Print("digraph {\n\trankdir = LR")
 	for i = 0; i < n; i++ {
 		for j = 0; j < m; j++ {
 			fmt.Printf("\n\t%d -> %d [label = \"%c(%s)\"]", i, delta[i][j], alphas[j], fi[i][j])
