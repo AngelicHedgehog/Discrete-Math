@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"strconv"
@@ -203,9 +202,9 @@ var (
 )
 
 func main() {
-	sentence, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+	sentence := os.Args[1]
 	lexems := make(chan Lexem)
-	go lexer(sentence[:len(sentence)-2], lexems)
+	go lexer(sentence, lexems)
 
 	lexemsSyntax := make([]Lexem, 0, 20)
 	lexemsEval := lexemsSyntax
@@ -221,13 +220,12 @@ func main() {
 		lexemsEval = append(lexemsEval, x)
 	}
 
+	var val int
 	noErr, n := E(lexemsSyntax)
 	if noErr {
 		for i, x := range lexemsEval {
 			if x.Tag == VAR {
 				if !varIn[x.Image] {
-					var val int
-					fmt.Printf("Enter the value of var %s: ", x.Image)
 					fmt.Scan(&val)
 					varIn[x.Image] = true
 					varVal[x.Image] = strconv.Itoa(val)
