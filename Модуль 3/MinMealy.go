@@ -114,11 +114,7 @@ func main() {
 		alphas[j] = 'a' + j
 	}
 
-	fmt.Print("digraph {\n\trankdir = LR\n\tdummy [label = \"\", shape = none]")
-	for i = 0; i < countGroups; i++ {
-		fmt.Printf("\n\t%d [shape = circle]", i)
-	}
-	fmt.Print("\n\tdummy -> 0")
+	fmt.Print("digraph {\n\trankdir = LR")
 	for i = 0; i < countGroups; i++ {
 		for j = 0; j < m; j++ {
 			fmt.Printf("\n\t%d -> %d [label = \"%c(%s)\"]", i, T_[idToGroup[delta[groups[T[i]][0]][j]]], alphas[j], fi[groups[T[i]][0]][j])
