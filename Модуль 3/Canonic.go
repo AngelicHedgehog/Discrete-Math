@@ -1,5 +1,9 @@
 package main
 
+/*
+	ERROR IN ALGORITHM
+*/
+
 import "fmt"
 
 func main() {
