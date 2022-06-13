@@ -5,6 +5,10 @@ import (
 	"sort"
 )
 
+/*
+	ERROR IN ALGORITHM
+*/
+
 func checkByWidth(dot, n int, graph map[[2]int]bool) (bool, [2]map[int]bool) {
 	var (
 		i, now, team int
