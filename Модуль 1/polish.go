@@ -1,15 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
-func evalPolish() int {
-	var op string
-	fmt.Scan(&op)
-	if '0' <= op[0] && op[0] <= '9' {
-		return int(op[0] - '0')
+func readNewRune(reader *bufio.Reader) rune {
+	run := ' '
+	for run == ' ' {
+		run, _, _ = reader.ReadRune()
 	}
-	a, b := evalPolish(), evalPolish()
-	switch op[1] {
+	return run
+}
+
+func evalPolish(reader *bufio.Reader) int {
+	op := readNewRune(reader)
+	if '0' <= op && op <= '9' {
+		return int(op - '0')
+	}
+	op = readNewRune(reader)
+	a, b := evalPolish(reader), evalPolish(reader)
+	readNewRune(reader)
+	switch op {
 	case '+':
 		return a + b
 	case '-':
@@ -20,5 +33,5 @@ func evalPolish() int {
 }
 
 func main() {
-	fmt.Println(evalPolish())
+	fmt.Println(evalPolish(bufio.NewReader(os.Stdin)))
 }
