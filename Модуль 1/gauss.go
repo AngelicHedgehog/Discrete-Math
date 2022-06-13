@@ -21,7 +21,7 @@ func gcd(a, b int) int {
 func main() {
 	/**/
 	var N int
-	fmt.Scanf("%d", &N)
+	fmt.Scan(&N)
 	slau := make([][]int, N)
 	for i := 0; i < N; i++ {
 		slau[i] = make([]int, N+1)
