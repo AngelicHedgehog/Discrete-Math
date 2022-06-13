@@ -16,7 +16,7 @@ func main() {
 	}
 	_, _ = fmt.Scan(&n)
 	delta := make([][]int, n)
-	fi := make([][]string, n)
+	fi := make([][]int, n)
 	for i = 0; i < n; i++ {
 		delta[i] = make([]int, x)
 		for j = 0; j < x; j++ {
@@ -24,24 +24,43 @@ func main() {
 		}
 	}
 	for i = 0; i < n; i++ {
-		fi[i] = make([]string, x)
+		fi[i] = make([]int, x)
 		for j = 0; j < x; j++ {
 			_, _ = fmt.Scan(&fi[i][j])
 		}
 	}
 
-	done := make([]map[string]bool, n)
+	fmt.Print("digraph {\n\trankdir = LR")
+
+	done := make([]map[int]bool, n)
+	nums := make([]map[int]int, n)
 	for i = 0; i < n; i++ {
-		done[i] = map[string]bool{}
+		done[i] = map[int]bool{}
+		nums[i] = map[int]int{}
 	}
 
-	fmt.Print("digraph {\n\trankdir = LR")
 	for i = 0; i < n; i++ {
 		for j = 0; j < x; j++ {
-			if !done[delta[i][j]][fi[i][j]] {
-				done[delta[i][j]][fi[i][j]] = true
+			done[delta[i][j]][fi[i][j]] = true
+		}
+	}
+
+	k = 0
+	for i = 0; i < n; i++ {
+		for j = 0; j < y; j++ {
+			if done[i][j] {
+				fmt.Printf("\n\t%d [label = \"(%d,%s)\"]", k, i, Y[j])
+				nums[i][j] = k
+				k++
+			}
+		}
+	}
+
+	for i = 0; i < n; i++ {
+		for j = 0; j < y; j++ {
+			if done[i][j] {
 				for k = 0; k < x; k++ {
-					fmt.Printf("\n\t(%d,%s) -> (%d,%s) [label = \"%s\"]", delta[i][j], fi[i][j], delta[delta[i][j]][k], fi[delta[i][j]][k], X[k])
+					fmt.Printf("\n\t%d -> %d [label = \"%s\"]", nums[i][j], nums[delta[i][k]][fi[i][k]], X[k])
 				}
 			}
 		}
