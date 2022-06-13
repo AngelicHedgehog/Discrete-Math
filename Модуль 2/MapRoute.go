@@ -1,10 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
+	stdin := bufio.NewReader(os.Stdin)
 	var N, a, b, c, ind int
-	_, _ = fmt.Scan(&N)
+	_, _ = fmt.Fscan(stdin, &N)
 	sqrN := N * N
 
 	Map := make([]int, sqrN)
@@ -12,7 +17,7 @@ func main() {
 	for i := 0; i < N; i++ {
 		for j := 0; j < sqrN; j += N {
 			ind = i + j
-			_, _ = fmt.Scan(&a)
+			_, _ = fmt.Fscan(stdin, &a)
 			Map[ind] = a
 			graph[ind] = make([]int, 0, 4)
 			if i > 0 {
