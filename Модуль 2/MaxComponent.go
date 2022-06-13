@@ -1,10 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
+	stdin := bufio.NewReader(os.Stdin)
 	var N, M, a, b int
-	_, _ = fmt.Scan(&N, &M)
+	_, _ = fmt.Fscan(stdin, &N, &M)
 
 	graph := make([][]int, 0)
 	for i := 0; i < N; i++ {
@@ -12,7 +17,7 @@ func main() {
 	}
 
 	for i := 0; i < M; i++ {
-		_, _ = fmt.Scan(&a, &b)
+		_, _ = fmt.Fscan(stdin, &a, &b)
 		graph[a] = append(graph[a], b)
 		graph[b] = append(graph[b], a)
 	}
