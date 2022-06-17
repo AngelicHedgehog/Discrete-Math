@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func minMealy() (int, [][]int, [][]string, []int, []int, int, [][]int, []int) {
+func main() {
 	var n, m, q0, i, j, k int
 	_, _ = fmt.Scan(&n, &m, &q0)
 	delta := make([][]int, n)
@@ -108,26 +108,17 @@ func minMealy() (int, [][]int, [][]string, []int, []int, int, [][]int, []int) {
 			lastInQueue++
 		}
 	}
-	return m, delta, fi, T, T_, countGroups, groups, idToGroup
-}
 
-func main() {
-	m1, delta1, fi1, T1, T1_, countGroups1, groups1, idToGroup1 := minMealy()
-	m2, delta2, fi2, T2, T2_, countGroups2, groups2, idToGroup2 := minMealy()
-
-	if countGroups1 != countGroups2 || m1 != m2 {
-		fmt.Print("NOT EQUAL")
-		return
+	alphas := make([]int, m)
+	for j = 0; j < m; j++ {
+		alphas[j] = 'a' + j
 	}
-	for i := 0; i < countGroups1; i++ {
-		for j := 0; j < m1; j++ {
-			if T1_[idToGroup1[delta1[groups1[T1[i]][0]][j]]] !=
-				T2_[idToGroup2[delta2[groups2[T2[i]][0]][j]]] ||
-				fi1[groups1[T1[i]][0]][j] != fi2[groups2[T2[i]][0]][j] {
-				fmt.Print("NOT EQUAL")
-				return
-			}
+
+	fmt.Print("digraph {\n\trankdir = LR")
+	for i = 0; i < countGroups; i++ {
+		for j = 0; j < m; j++ {
+			fmt.Printf("\n\t%d -> %d [label = \"%c(%s)\"]", i, T_[idToGroup[delta[groups[T[i]][0]][j]]], alphas[j], fi[groups[T[i]][0]][j])
 		}
 	}
-	fmt.Print("EQUAL")
+	fmt.Print("\n}")
 }
