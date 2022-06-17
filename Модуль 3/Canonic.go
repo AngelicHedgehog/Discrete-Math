@@ -1,14 +1,15 @@
 package main
 
-/*
-	ERROR IN ALGORITHM
-*/
-
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
+	stdin := bufio.NewReader(os.Stdin)
 	var n, m, q0, a, i, j int
-	_, _ = fmt.Scan(&n, &m, &q0)
+	_, _ = fmt.Fscan(stdin, &n, &m, &q0)
 	delta := make([][]int, n)
 	fi := make([][]string, n)
 	T := make([]int, n)
@@ -17,29 +18,32 @@ func main() {
 		T[i] = -1
 		delta[i] = make([]int, m)
 		for j = 0; j < m; j++ {
-			_, _ = fmt.Scan(&delta[i][j])
+			_, _ = fmt.Fscan(stdin, &delta[i][j])
 		}
 	}
 	for i = 0; i < n; i++ {
 		fi[i] = make([]string, m)
 		for j = 0; j < m; j++ {
-			_, _ = fmt.Scan(&fi[i][j])
+			_, _ = fmt.Fscan(stdin, &fi[i][j])
 		}
 	}
 
-	nextNum := 0
-	lenQueue := 0
+	num := 0
 	queue := []int{q0}
-	for lenQueue != -1 {
-		a = queue[lenQueue]
-		lenQueue--
+	lastElem := 0
+	for lastElem != -1 {
+		a = queue[lastElem]
+		queue = queue[:lastElem]
+		lastElem--
 		if T[a] == -1 {
-			T[a] = nextNum
-			T_[nextNum] = a
-			nextNum++
-			for j = 0; j < m; j++ {
-				queue = append(queue, delta[a][j])
-				lenQueue++
+			T[a] = num
+			T_[num] = a
+			num++
+			for i = m - 1; i >= 0; i-- {
+				if T[delta[a][i]] == -1 {
+					queue = append(queue, delta[a][i])
+					lastElem++
+				}
 			}
 		}
 	}
